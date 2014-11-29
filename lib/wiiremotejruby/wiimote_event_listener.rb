@@ -42,6 +42,7 @@ module Neurogami
 
 
     def initialize mapping
+      warn "================ WiimoteEventListener initialized with mapping ================ "
       define_on_ir_event(mapping.delete :ir_event) if mapping[:ir_event ]
       define_on_motion_sensing_event(mapping.delete :motion_sensing_event) if mapping[:motion_sensing_event ]
       assign_button_mapping mapping
@@ -73,7 +74,7 @@ module Neurogami
     #   then decompose that key into WIIMOTE_BUTTON_HOME + WIIMOTE_BUTTON_TWO  to get the hash number
     #
     # These key mappings can map to lambdas or method names.  A typical scenario is that
-    # some Jimpanzee controller will want to map controller methods to Wiimote events:
+    # some Monkeybars controller will want to map controller methods to Wiimote events:
     #
     #
     #     mappings = {
@@ -107,7 +108,7 @@ module Neurogami
       return if button == 0
       return unless handler = @button_handlers[button]
 
-      if handler.respond_to?(:call)
+      if handler.respond_to? :call
         begin
           handler[event]
         rescue Exception => e
@@ -121,38 +122,36 @@ module Neurogami
 
     # IREvent
     def on_ir_event event 
-      warn "Default on_ir_event " if ENV['JAMES_SCA_JDEV_MACHINE'] # JGBDEBUG 
+      # warn "Default on_ir_event " if ENV['JAMES_SCA_JDEV_MACHINE'] # JGBDEBUG 
     end
 
-
-    
     def on_motion_sensing_event event 
-      STDERR.puts( ":DEBUG #{__FILE__}:#{__LINE__} DEFAULT onMotionSensingEvent" ) if ENV['JAMES_SCA_JDEV_MACHINE'] # JGBDEBUG 
+      # STDERR.puts( ":DEBUG #{__FILE__}:#{__LINE__} DEFAULT onMotionSensingEvent" ) if ENV['JAMES_SCA_JDEV_MACHINE'] # JGBDEBUG 
     end
 
   
     # ExpansionEvent
-    def  onExpansionEvent event 
+    def onExpansionEvent event 
       # warn event 
     end
 
     # StatusEvent
-    def  onStatusEvent event 
+    def onStatusEvent event 
       # warn event 
     end
 
     # DisconnectionEvent
-    def  onDisconnectionEvent event 
+    def onDisconnectionEvent event 
       # warn event 
     end
 
     # NunchukInsertedEvent
-    def  onNunchukInsertedEvent event 
+    def onNunchukInsertedEvent event 
       # warn event 
     end
 
     # NunchukRemovedEvent
-    def  onNunchukRemovedEvent event 
+    def onNunchukRemovedEvent event 
       # warn event 
     end
   end

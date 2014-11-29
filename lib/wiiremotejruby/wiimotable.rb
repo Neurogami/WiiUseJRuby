@@ -1,13 +1,27 @@
 # http://wiki.jruby.org/wiki/Calling_Java_from_JRuby#Use_include_package_within_a_Ruby_Module_to_import_a_Java_Package
 
 # require 'spinner_dialog'   # need a way to allow some UI stuff without presuming too much
+=begin
 
+This seems to assume thisis used in a monkeybars app because it refers to
+'signal' and 'transfer' but those methods are not defined anyplace.
+
+They are monkeybtas view things
+
+
+=end
 require 'pp'
 
 module Neurogami
 
   module Wiimotable
     def wiimote_me listener, max_attempts=nil
+      warn "wiimote_me  called ..."
+
+      if listener.is_a? Hash
+# JGB This may be a difference with the WiiRemoteJRuby 
+           listener = WiimoteEventListener.new listener
+      end
       
       attempts_so_far = 0
 
@@ -30,7 +44,7 @@ module Neurogami
           warn "Attempte #{attempts_so_far}. Retry  connection ... "
           retry
         else
-          raise
+          raise "Exceeded maximum of #{max_attempts} attempts to connect."
         end
       end
     ensure
@@ -40,7 +54,7 @@ module Neurogami
 
     def get_wiimote 
       begin
-      wiimotes = WiiUseApiManager.wiimotes(1)
+      wiimotes = WiiUseApiManager.wiimotes 1
       warn "wiimotes: #{wiimotes.pretty_inspect}"
       wiimote = wiimotes.first
       rescue Exception => e
