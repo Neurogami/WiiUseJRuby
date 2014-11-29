@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require File.expand_path( File.join(File.dirname(__FILE__), %w[.. lib wiiremotejruby_utils]))
+require File.expand_path( File.join(File.dirname(__FILE__), %w[.. lib wiiusejruby_utils]))
 
 # Put your code here
 

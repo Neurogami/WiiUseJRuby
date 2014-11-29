@@ -1,5 +1,5 @@
 
-require 'wiiremotejruby_utils'
+require 'wiiusejruby_utils'
 
 Neurogami::WiiRemoteJRuby.require_all_libs_relative_to(__FILE__)
 

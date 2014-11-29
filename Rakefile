@@ -7,11 +7,10 @@ begin
 #  Bones.setup
 rescue LoadError
     raise RuntimeError, '### please install the "bones" gem ###'
-
 end
 
 ensure_in_path 'lib'
-require 'wiiremotejruby_utils'
+require 'wiiusejruby_utils'
 task :default do
   puts "There is no default task."
 end

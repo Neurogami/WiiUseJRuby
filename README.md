@@ -26,10 +26,10 @@ Install the gem from gems.neurogami.com
 
 In the root of your project, run 
 
-     wiiremotejruby
+     wiiusejruby
   
 
-This will copy over the lib files under lib/ruby/wiitemotejruby
+This will copy over the lib files under lib/ruby/wiiusejruby
 
 
 
