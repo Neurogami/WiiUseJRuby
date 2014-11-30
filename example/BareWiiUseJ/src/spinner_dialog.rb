@@ -27,7 +27,7 @@ class SpinnerDialog < javax.swing.JDialog
 
     @image_label = javax.swing.JLabel.new
     begin 
-      @image_label.icon = javax.swing.ImageIcon.new load_resource('images/spinner3.gif')
+      @image_label.icon = javax.swing.ImageIcon.new load_resource 'images/spinner3.gif'
     rescue Exception
       warn "Error loading icon image: #{$!}"
       # raise

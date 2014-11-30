@@ -23,14 +23,12 @@ class IntroController < ApplicationController
 
   def motion_sensing_event_action_performed e    # WRAccelerationEvent
     model.acceleration_event = e
-    #     warn e.to_s
     transfer[:pitch_text] = "Pitch: #{model.pitch}"
     signal :set_pitch_text
     transfer[:roll_text] = "Roll: #{model.roll}"
     signal :set_roll_text
     transfer[:yaw_text] = "Yaw: #{model.yaw}"
     signal :set_yaw_text
-
   end
 
 =begin
@@ -56,8 +54,6 @@ There is no way to tell the moment when a button is in fact released.
 =end
   def b_button e
     warn "e.getButtonsJustPressed() = #{e.getButtonsJustPressed()}"
-
-
     # This is never true!
     # warn "e.isButtonJustReleased(WiimoteEventListener::WIIMOTE_BUTTON_B) ? = #{e.isButtonJustReleased(Neurogami::WiimoteEventListener::WIIMOTE_BUTTON_B)}"
 
@@ -66,8 +62,6 @@ There is no way to tell the moment when a button is in fact released.
     else
       warn "------\nb_button RELEASED #{e.to_s}\n------"
     end
-
-
   end
 
 
@@ -76,7 +70,6 @@ There is no way to tell the moment when a button is in fact released.
   end
 
   def load
-
 
 =begin
 
@@ -122,18 +115,14 @@ a series of
 events.
 
 
-
-
 http://code.google.com/p/wiiusej/downloads/list
-
 
 
 =end
     mappings = {
-
-      :wiimote_button_home => lambda {|e| home_button e },
-      :wiimote_button_b => lambda {|e| b_button e },
-      :wiimote_button_up => lambda {|e| button_up e },
+      :wiimote_button_home  => lambda {|e| home_button e },
+      :wiimote_button_b     => lambda {|e| b_button e },
+      :wiimote_button_up    => lambda {|e| button_up e },
 
       # ... more mappings of Wii events to app code
       :motion_sensing_event => lambda{|e| motion_sensing_event_action_performed e }
@@ -153,10 +142,7 @@ http://code.google.com/p/wiiusej/downloads/list
     # Now create a Wiimote event listner, passing in the mappings,
     # and the number of times to prompt the user to connect before giving up.
     # If you omit this number, the application will prompt the user forever.
-    wiimote_me  mappings, 3
-
+    wiimote_me mappings, 3
   end
-
-
 
 end

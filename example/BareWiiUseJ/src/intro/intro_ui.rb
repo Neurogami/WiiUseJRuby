@@ -1,9 +1,5 @@
 # Your View class will almost certainly need a Java Swing class to show to the user.
 #
-# To understand how Monkeybars views work, see:
-#
-#     http://wwww.monkeybars.org/understanding-views
-#
 # Each View class has a class method, 'set_java_class', to which you pass
 # the Swing class to use for the actual GUI.
 #
@@ -33,8 +29,6 @@
 #  Note that you don't have to place this code in the same file as your Monkeybars View class,
 #  but it needs to be processed before your view code sets its Java class.
 
-
-# $:.unshift 'lib/ruby'
 require 'swingset'
 
 include  Neurogami::SwingSet::Core
@@ -58,7 +52,7 @@ class IntroFrame < Frame
     @about_menu
   end
 
-  def initialize(*args)
+  def initialize *args
     super
     self.minimum_width  = FRAME_WIDTH
     self.minimum_height = FRAME_HEIGHT
@@ -79,7 +73,6 @@ class IntroFrame < Frame
 
     @menu_bar = MenuBar.new do |menu_bar|
       @file_menu = Menu.new do |m|
-
         @exit_menu  = MenuItem.new do |mi|
           mi.name = 'exit_menu'
           mi.mnemonic= Monkeybars::Key.symbol_to_code :VK_X
@@ -106,7 +99,6 @@ class IntroFrame < Frame
 
     
     @roll_label = Label.new do |l|
-      # A nicer way to set fonts would be welcome
       l.font = java::awt.Font.new "Lucida Grande", 0, 18
       l.minimum_dimensions LABEL_WIDTH, LABEL_HEIGHT
       l.text = "Roll: 0"
@@ -114,26 +106,19 @@ class IntroFrame < Frame
 
  
     @yaw_label = Label.new do |l|
-      # A nicer way to set fonts would be welcome
       l.font = java::awt.Font.new "Lucida Grande", 0, 18
       l.minimum_dimensions LABEL_WIDTH, LABEL_HEIGHT
       l.text = "Yaw: 0"
     end
- 
-    # We need to set a name so that the controller can catch events from this button
-    @default_button = Button.new do |b| 
-      b.name = "default_button"
-      b.text = "Click me!"
-    end
+
 
     # Add components to panel
     # If we have defined the layout as 'wrap 3' then the added components
     # should auto-wrap after each set of 3
     # but if you want to force a wrap you can do that too.
-   #  component_panel.add @default_button, 'grow x'
     component_panel.add @pitch_label, 'wrap'
-    component_panel.add @roll_label, 'wrap'#,  'wrap'
-    component_panel.add @yaw_label #,  'wrap'
+    component_panel.add @roll_label, 'wrap'
+    component_panel.add @yaw_label 
     add component_panel
   end
 
