@@ -14,7 +14,7 @@ A set of Ruby libs to make calling into the WiiUseJ Java jar a little nicer.
 Intended for use with JRuby
 
 
-FEATURES/PROBLEMS:
+FEATURES:
 -------------------
 
 Gives a more Ruby-ish API to the underlying Java classes.
@@ -38,13 +38,18 @@ REQUIREMENTS
 
 You need to be using JRuby, and have WiiUseJ as part of your project.
 
-The code more or less assumes you are creating a [Monkeybars](https://github.com/monkeybars/monkeybars-core) app.
+WiiUseJ may not work well, or at all, on certain operating systems.  Such issues seem to depend on the underlying Bluetooth stack.
+
+You will need to grab the WiiUseJ jar and any required Bluetooth libraries.  Please check the [WiiUseJ project page](http://code.google.com/p/wiiusej/) for details.  WiiUseJRuby assumes you have already set up you project with the required WiUseJ files.
+
+
+The code more or less assumes you are creating a [Monkeybars](https://github.com/monkeybars/monkeybars-core) app.  It should not be too hard to pull apart the core WiUseJ code if you wish to use the JRuby stuff independent of Monkeybars. 
 
 
 INSTALL
 -------------------
 
-(sudo) gem install Neurogami-WiiUseJRuby --source http://gems/neurogami.com
+(sudo) gem install WiiUseJRuby --source http://gems/neurogami.com
 
 Or finagle an installation from the git repo.
 
